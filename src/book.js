@@ -36,7 +36,9 @@ class Book{
         Book.booksContainer.append(this.bookHTML())
     }
 
-    static renderForm(){
+
+    static handleClick(e){
+        e.target.remove()
         Book.bookForm.innerHTML += `
         <form id="new-book-form">
             Title: <input type="text" id="title"><br>
@@ -44,8 +46,10 @@ class Book{
             Description: <input type="textarea" id="description"><br>
             Book Image URL: <input type="text" id="book-image"><br>
             Amazon URL: <input type="text" id="amazon-product-url"><br>
-            <input type="submit">
+            <input type="submit" value="Add book">
         </form>
         `
     }
+
+
 }
