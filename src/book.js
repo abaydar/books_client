@@ -4,6 +4,7 @@ class Book{
 
     static booksContainer = document.getElementById('books-container')
     static bookForm = document.getElementById('book-form')
+    
 
     constructor({id, title, author, description, book_image, amazon_product_url}){
         this.id = id 

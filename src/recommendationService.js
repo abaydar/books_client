@@ -9,7 +9,7 @@ class RecommendationService {
         .then(recommendations => {
             for (const recommendation of recommendations){
                 const r = new Recommendation(recommendation)
-                // r.appendRecommendationToBook()
+                r.appendRecommendationToBook()
             }
         })
     }
