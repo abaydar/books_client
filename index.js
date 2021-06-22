@@ -6,12 +6,19 @@ const newFormButton = document.getElementById('new-form-button')
 
 bookService.getBooks()
 
+User.userForm()
 newFormButton.addEventListener('click', Book.handleClick)
 
-Book.bookForm.addEventListener('submit', handleSubmit)
+Book.bookForm.addEventListener('submit', handleBookSubmit)
+User.userFormConatiner.addEventListener('submit', handleUserSubmit)
 
-function handleSubmit(e){
+function handleBookSubmit(e){
     e.preventDefault()
     bookService.createBook()
+}
+
+function handleUserSubmit(e){
+    e.preventDefault()
+    debugger
 }
 
