@@ -11,15 +11,6 @@ class Recommendation {
         Recommendation.all.push(this)
     }
 
-    // recommendationHTML(){
-    //     this.element.innerHTML += `
-    //     <h4>People who enjoyed this book also recommend: </h4>
-    //     <ul>
-    //     <li>${this.title} - ${this.author}</li>
-    //     </ul>
-    //     `
-    //     return this.element
-    // }
 
     static filterRecommendations(bookId){
         return this.all.filter((r) => {
@@ -28,28 +19,34 @@ class Recommendation {
 
     }
 
-    // appendRecommendationToBook(){
-        // let books = Book.all
-        // let recs = Recommendation.all
-
-        // let result = books.forEach((b) => {
-        //     return recs.filter((r) => {
-        //         r.book_id === b.id
-        //     })
-        // })
-
-        // book.all and recommendation.all match them through the ids
-        // const book = books.forEach((book) => {
-        //     return recs.find(rec => {
-        //         rec.book_id === book.id
-        //     });
-            
-        // })
-
-    // }
 
     static handleRecClick(e){
+        const bookDiv = e.target.parentElement
+        e.target.remove()
+
+        bookDiv.innerHTML += `
+        <form id="rec-form">
+            Title: <input type="text" id="rec-title"><br>
+            Author: <input type="text" id="rec-author"><br>
+            <input type="submit" value="Add Recommendation">
+        </form>
+        `
+
+        const recForm = document.getElementById('rec-form')
+        recForm.addEventListener('submit', Recommendation.handleRecSubmit)
+    }
+
+    static handleRecSubmit(e){
+        e.preventDefault()
+        recommendationService.createRecommendation(e.target.previousElementSibling)
+        // newRec.appendNewRecToDom(e.target.previousElementSibling)
+    }
+    
+    appendNewRecToDom(element){
         debugger
+        // const li = document.createElement('li')
+        // li.innerHTML = ""
+        // element.appendChild()
     }
 
 }

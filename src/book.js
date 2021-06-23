@@ -64,19 +64,19 @@ class Book{
 
     bookRecommendations = () => {
         const bookRecs = Recommendation.filterRecommendations(this.id)
-        let bookRecsArray =  []
-        bookRecs.map((rec) => {
+        // let bookRecsArray =  []
+        let bookRecsArray = bookRecs.map((rec) => {
             
             rec.element = document.createElement('li')
-            rec.element.dataset.id = this.id
             rec.element.id = `recommendation-${rec.id}`
             
             rec.element.innerHTML += `
             ${rec.title} - ${rec.author}
             `        
-            bookRecsArray.push(rec.element)
+            return rec.element
+            // bookRecsArray.push(rec.element)
         })
-
+        console.log(bookRecsArray)
         return bookRecsArray
         
     }

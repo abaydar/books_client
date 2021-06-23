@@ -9,8 +9,30 @@ class RecommendationService {
         .then(recommendations => {
             for (const recommendation of recommendations){
                 const r = new Recommendation(recommendation)
-                // r.appendRecommendationToBook()
             }
+        })
+    }
+
+    createRecommendation(element){
+        const rec = {
+            title: document.getElementById('rec-title').value,
+            author: document.getElementById('rec-author').value,
+            book_id: parseInt(element.parentElement.dataset.id)
+        }
+
+        const configObj = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(rec)
+        }
+
+        fetch(`${this.endpoint}/recommendations`, configObj)
+        .then(resp => resp.json())
+        .then(recommendation => {
+            const r = new Recommendation(recommendation)
+            r.appendNewRecToDom(element)
         })
     }
 }
