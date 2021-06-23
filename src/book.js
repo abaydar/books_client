@@ -22,23 +22,33 @@ class Book{
     }
 
     bookHTML(){
+        
         this.element.innerHTML += `
-            <h2>${this.title}</h2>
-            <h4>Author: ${this.author}</h4>
-            <p>Description: ${this.description}</p>
-            <img src=${this.book_image}>
-            <br>
-            <a href=${this.amazon_product_url}>Amazon Link</a>
+        <h2>${this.title}</h2>
+        <h4>Author: ${this.author}</h4>
+        <p>Description: ${this.description}</p>
+        <img src=${this.book_image}>
+        <br>
+        <a href=${this.amazon_product_url}>Amazon Link</a><br>
+        <h4>Users who like this book also recommend:</h4>
+        <button id="new-recommendation-button">Add a Recommendation</button>
+        <ul id="rec-list-${this.id}"></ul>
         `
+        
         return this.element
+
     }
 
     appendBookToDOM(){
         Book.booksContainer.append(this.bookHTML())
+
+        const newRecButton = document.getElementById('new-recommendation-button')
+        newRecButton.addEventListener('click', Recommendation.handleRecClick)
     }
 
 
-    static handleClick(e){
+
+    static handleBookClick(e){
         e.target.remove()
         Book.bookForm.innerHTML += `
         <form id="new-book-form">
@@ -50,6 +60,29 @@ class Book{
             <input type="submit" value="Add book">
         </form>
         `
+    }
+
+    bookRecommendations(){
+        const bookRecs = Recommendation.filterRecommendations(this.id)
+        
+        return bookRecs.forEach((rec) => {
+
+            rec.element = document.createElement('li')
+            rec.element.dataset.id = this.id
+            rec.element.id = `recommendation-${rec.id}`
+
+            rec.element.innerHTML += `
+            ${rec.title} - ${rec.author}
+            `        
+            return rec.element  
+        })
+        
+    }
+
+    appendRecommendationsToDOM(){
+        const recList = document.querySelector(`#rec-list-${this.id}`)
+
+        recList.append(this.bookRecommendations())
     }
 
 

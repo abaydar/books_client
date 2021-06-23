@@ -2,33 +2,53 @@ class Recommendation {
 
     static all = []
 
-    constructor({title, author, book_id}){
+    constructor({id, title, author, book_id}){
+        this.id = id
         this.title = title
         this.author = author
         this.book_id = book_id
 
-        this.element = document.createElement('span')
-        this.element.dataset.id = this.id
-        this.element.id = `recommendation-${this.id}`
-
+        Recommendation.all.push(this)
     }
 
-    recommendationHTML(){
-        this.element.innerHTML += `
-        <h4>Recommendations: </h4>
-        <ul>
-        <li>${this.title} - ${this.author}</li>
-        </ul>
-        `
-        return this.element
+    // recommendationHTML(){
+    //     this.element.innerHTML += `
+    //     <h4>People who enjoyed this book also recommend: </h4>
+    //     <ul>
+    //     <li>${this.title} - ${this.author}</li>
+    //     </ul>
+    //     `
+    //     return this.element
+    // }
+
+    static filterRecommendations(bookId){
+        return this.all.filter((r) => {
+            return r.book_id === bookId
+        })
     }
 
-    appendRecommendationToBook(){
-        const book = Book.all.find((book) => book.id === this.book_id )
-        const bookDiv = document.querySelector(`#book-${book.id}`)
-        bookDiv.append(this.recommendationHTML())
+    // appendRecommendationToBook(){
+        // let books = Book.all
+        // let recs = Recommendation.all
+
+        // let result = books.forEach((b) => {
+        //     return recs.filter((r) => {
+        //         r.book_id === b.id
+        //     })
+        // })
+
+        // book.all and recommendation.all match them through the ids
+        // const book = books.forEach((book) => {
+        //     return recs.find(rec => {
+        //         rec.book_id === book.id
+        //     });
+            
+        // })
+
+    // }
+
+    static handleRecClick(e){
         debugger
-        //append the recommendation to the book it belongs to
     }
 
 }

@@ -4,11 +4,10 @@ const bookService = new BookService(base_url)
 const recommendationService = new RecommendationService(base_url)
 const newFormButton = document.getElementById('new-form-button')
 
-
 bookService.getBooks()
 recommendationService.getRecommendations()
 
-newFormButton.addEventListener('click', Book.handleClick)
+newFormButton.addEventListener('click', Book.handleBookClick)
 
 Book.bookForm.addEventListener('submit', handleBookSubmit)
 
