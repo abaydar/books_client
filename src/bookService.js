@@ -4,6 +4,8 @@ class BookService{
     }
 
     getBooks(){
+        recommendationService.getRecommendations()
+        
         fetch(`${this.endpoint}/books`)
         .then(resp => resp.json())
         .then(books => {
@@ -35,7 +37,6 @@ class BookService{
         fetch(`${this.endpoint}/books`, configObj)
         .then(resp => resp.json())
         .then(book => {
-            debugger
             const b = new Book(book)
             b.appendBookToDOM()
         })

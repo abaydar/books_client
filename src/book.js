@@ -64,7 +64,7 @@ class Book{
 
     bookRecommendations = () => {
         const bookRecs = Recommendation.filterRecommendations(this.id)
-        // let bookRecsArray =  []
+      
         let bookRecsArray = bookRecs.map((rec) => {
             
             rec.element = document.createElement('li')
@@ -74,9 +74,8 @@ class Book{
             ${rec.title} - ${rec.author}
             `        
             return rec.element
-            // bookRecsArray.push(rec.element)
         })
-        console.log(bookRecsArray)
+        
         return bookRecsArray
         
     }

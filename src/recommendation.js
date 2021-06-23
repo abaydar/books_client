@@ -39,14 +39,12 @@ class Recommendation {
     static handleRecSubmit(e){
         e.preventDefault()
         recommendationService.createRecommendation(e.target.previousElementSibling)
-        // newRec.appendNewRecToDom(e.target.previousElementSibling)
     }
     
     appendNewRecToDom(element){
-        debugger
-        // const li = document.createElement('li')
-        // li.innerHTML = ""
-        // element.appendChild()
+        const li = document.createElement('li')
+        li.innerHTML = `${this.title} - ${this.author}`
+        element.appendChild(li)
     }
 
 }
