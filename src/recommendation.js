@@ -25,6 +25,7 @@ class Recommendation {
         return this.all.filter((r) => {
             return r.book_id === bookId
         })
+
     }
 
     // appendRecommendationToBook(){

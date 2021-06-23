@@ -31,8 +31,8 @@ class Book{
         <br>
         <a href=${this.amazon_product_url}>Amazon Link</a><br>
         <h4>Users who like this book also recommend:</h4>
-        <button id="new-recommendation-button">Add a Recommendation</button>
         <ul id="rec-list-${this.id}"></ul>
+        <button id="new-recommendation-button">Add a Recommendation</button>
         `
         
         return this.element
@@ -62,27 +62,30 @@ class Book{
         `
     }
 
-    bookRecommendations(){
+    bookRecommendations = () => {
         const bookRecs = Recommendation.filterRecommendations(this.id)
-        
-        return bookRecs.forEach((rec) => {
-
+        let bookRecsArray =  []
+        bookRecs.map((rec) => {
+            
             rec.element = document.createElement('li')
             rec.element.dataset.id = this.id
             rec.element.id = `recommendation-${rec.id}`
-
+            
             rec.element.innerHTML += `
             ${rec.title} - ${rec.author}
             `        
-            return rec.element  
+            bookRecsArray.push(rec.element)
         })
+
+        return bookRecsArray
         
     }
 
-    appendRecommendationsToDOM(){
+    appendRecommendationsToDOM = () => {
         const recList = document.querySelector(`#rec-list-${this.id}`)
-
-        recList.append(this.bookRecommendations())
+        for(let i=0; i<this.bookRecommendations().length; i++){
+            recList.appendChild(this.bookRecommendations()[i])
+        }
     }
 
 
