@@ -6,13 +6,14 @@ class Book{
     static bookForm = document.getElementById('book-form')
     
 
-    constructor({id, title, author, description, book_image, amazon_product_url}){
+    constructor({id, title, author, description, book_image, amazon_product_url, likes}){
         this.id = id 
         this.title = title
         this.author = author
         this.description = description
         this.book_image = book_image
         this.amazon_product_url = amazon_product_url
+        this.likes = likes
 
         this.element = document.createElement('div')
         this.element.dataset.id = this.id
@@ -29,6 +30,8 @@ class Book{
         <p>Description: ${this.description}</p>
         <img src=${this.book_image}>
         <br>
+        <h2 data-id="${this.id}" class="like-book">${BLACK_HEART}</h2>
+        <h3 id="likes-count-${this.id}">${this.likes} Likes</h3>
         <a href=${this.amazon_product_url}>Amazon Link</a><br>
         <h4>Users who like this book also recommend:</h4>
         <ul id="rec-list-${this.id}"></ul>
@@ -46,8 +49,6 @@ class Book{
         newRecButton.addEventListener('click', Recommendation.handleRecClick)
     }
 
-
-
     static handleBookClick(e){
         e.target.remove()
         Book.bookForm.innerHTML += `
@@ -60,6 +61,15 @@ class Book{
             <input type="submit" value="Add book">
         </form>
         `
+    }
+
+    static handleLikeClick(e){
+
+    }
+
+    static handleBookSubmit(e){
+        e.preventDefault()
+        bookService.createBook()
     }
 
     bookRecommendations = () => {
@@ -86,6 +96,7 @@ class Book{
             recList.appendChild(this.bookRecommendations()[i])
         }
     }
+
 
 
 }
