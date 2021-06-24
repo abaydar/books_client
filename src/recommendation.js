@@ -21,10 +21,10 @@ class Recommendation {
 
 
     static handleRecClick(e){
-        const bookDiv = e.target.parentElement
+        const recList = e.target.previousElementSibling
         e.target.remove()
 
-        bookDiv.innerHTML += `
+        recList.innerHTML += `
         <form id="rec-form">
             Title: <input type="text" id="rec-title"><br>
             Author: <input type="text" id="rec-author"><br>
@@ -38,7 +38,8 @@ class Recommendation {
 
     static handleRecSubmit(e){
         e.preventDefault()
-        recommendationService.createRecommendation(e.target.previousElementSibling)
+        recommendationService.createRecommendation(e.target.parentElement)
+        e.target.reset()
     }
     
     appendNewRecToDom(element){

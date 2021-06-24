@@ -32,7 +32,6 @@ class Book{
         <br>
         <h2 data-id="${this.id}" class="like-book">${BLACK_HEART}</h2>
         <h3 id="likes-count-${this.id}">${this.likes} Likes</h3>
-        <button id="new-recommendation-button">Add a Recommendation</button><br><br>
         <a href=${this.amazon_product_url}>Amazon Link</a><br>
         <ul id="rec-list-${this.id}"></ul>
         `
@@ -44,8 +43,8 @@ class Book{
     appendBookToDOM(){
         Book.booksContainer.append(this.bookHTML())
 
-        const newRecButton = document.getElementById('new-recommendation-button')
-        newRecButton.addEventListener('click', Recommendation.handleRecClick)
+        // const newRecButton = document.getElementById('new-recommendation-button')
+        // newRecButton.addEventListener('click', Recommendation.handleRecClick)
     }
 
     static handleBookClick(e){
@@ -84,8 +83,7 @@ class Book{
     static handleShowPageClick(e){
         if (e.target.className === "book-img"){
             const book = Book.all.find(b => b.id === parseInt(e.target.dataset.id))
-            const bookDiv = parseInt(e.target.parentElement.dataset.id)
-            debugger
+            
             Book.booksContainer.innerHTML = ""
             Book.booksContainer.innerHTML = `
             <h2>${book.title}</h2>
@@ -95,13 +93,16 @@ class Book{
             <br>
             <h2 data-id="${book.id}" class="like-book">${BLACK_HEART}</h2>
             <h3 id="likes-count-${book.id}">${book.likes} Likes</h3>
-            <button id="new-recommendation-button">Add a Recommendation</button><br><br>
             <a href=${book.amazon_product_url}>Amazon Link</a><br>
             <h4>Users who like this book also recommend:</h4>
             <ul id="rec-list-${book.id}"></ul>
+            <button id="new-recommendation-button">Add a Recommendation</button><br><br>
             <a id="back-bttn" href="#">Back</a>
             `
             book.appendRecommendationsToDOM()
+
+            const newRecButton = document.getElementById('new-recommendation-button')
+            newRecButton.addEventListener('click', Recommendation.handleRecClick)   
 
             const backBttn = document.getElementById('back-bttn')
             backBttn.addEventListener('click', Book.goBack)

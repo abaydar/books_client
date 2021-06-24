@@ -17,7 +17,7 @@ class RecommendationService {
         const rec = {
             title: document.getElementById('rec-title').value,
             author: document.getElementById('rec-author').value,
-            book_id: parseInt(element.parentElement.dataset.id)
+            book_id: parseInt(document.querySelector(".book-img").dataset.id)
         }
 
         const configObj = {
