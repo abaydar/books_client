@@ -32,10 +32,10 @@ class Book{
         <br>
         <h2 data-id="${this.id}" class="like-book">${BLACK_HEART}</h2>
         <h3 id="likes-count-${this.id}">${this.likes} Likes</h3>
+        <button id="new-recommendation-button">Add a Recommendation</button><br><br>
         <a href=${this.amazon_product_url}>Amazon Link</a><br>
         <h4>Users who like this book also recommend:</h4>
         <ul id="rec-list-${this.id}"></ul>
-        <button id="new-recommendation-button">Add a Recommendation</button>
         `
         
         return this.element
@@ -65,10 +65,12 @@ class Book{
 
     static handleLikeClick(e){
         if (e.target.className === "like-book" && e.target.innerText === BLACK_HEART){
+            bookService.increaseLikes(parseInt(e.target.parentElement.dataset.id))
             e.target.innerText = RED_HEART
             let currentLikes = parseInt(e.target.nextElementSibling.innerText)
             e.target.nextElementSibling.innerText = `${++currentLikes} Likes`
         } else if (e.target.className === "like-book" && e.target.innerText === RED_HEART){
+            bookService.decreaseLikes(parseInt(e.target.parentElement.dataset.id))
             e.target.innerText = BLACK_HEART
             let currentLikes = parseInt(e.target.nextElementSibling.innerText)
             e.target.nextElementSibling.innerText = `${--currentLikes} Likes`

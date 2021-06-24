@@ -42,4 +42,31 @@ class BookService{
             b.appendBookToDOM()
         })
     }
+
+    increaseLikes(bookId){
+        let currentLikes = parseInt(document.getElementById('likes-count-1').innerText)
+        fetch(`${this.endpoint}/books/${bookId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "likes": ++currentLikes
+            })
+        })
+    }
+
+    decreaseLikes(bookId){
+        let currentLikes = parseInt(document.getElementById('likes-count-1').innerText)
+        fetch(`${this.endpoint}/books/${bookId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "likes": --currentLikes
+            })
+        })
+    }
+
 }
