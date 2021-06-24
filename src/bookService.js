@@ -12,7 +12,7 @@ class BookService{
             for (const book of books){
                 const b = new Book(book)
                 b.appendBookToDOM()
-                b.appendRecommendationsToDOM()
+                // b.appendRecommendationsToDOM()
                 // b.getBookRecommendations()
             }
         })

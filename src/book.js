@@ -28,13 +28,12 @@ class Book{
         <h2>${this.title}</h2>
         <h4>Author: ${this.author}</h4>
         <p>Description: ${this.description}</p>
-        <img src=${this.book_image}>
+        <img src=${this.book_image} data-id="${this.id}" class="book-img">
         <br>
         <h2 data-id="${this.id}" class="like-book">${BLACK_HEART}</h2>
         <h3 id="likes-count-${this.id}">${this.likes} Likes</h3>
         <button id="new-recommendation-button">Add a Recommendation</button><br><br>
         <a href=${this.amazon_product_url}>Amazon Link</a><br>
-        <h4>Users who like this book also recommend:</h4>
         <ul id="rec-list-${this.id}"></ul>
         `
         
@@ -82,6 +81,38 @@ class Book{
         bookService.createBook()
     }
 
+    static handleShowPageClick(e){
+        if (e.target.className === "book-img"){
+            const book = Book.all.find(b => b.id === parseInt(e.target.dataset.id))
+            const bookDiv = parseInt(e.target.parentElement.dataset.id)
+            debugger
+            Book.booksContainer.innerHTML = ""
+            Book.booksContainer.innerHTML = `
+            <h2>${book.title}</h2>
+            <h4>Author: ${book.author}</h4>
+            <p>Description: ${book.description}</p>
+            <img src=${book.book_image} data-id="${book.id}" class="book-img">
+            <br>
+            <h2 data-id="${book.id}" class="like-book">${BLACK_HEART}</h2>
+            <h3 id="likes-count-${book.id}">${book.likes} Likes</h3>
+            <button id="new-recommendation-button">Add a Recommendation</button><br><br>
+            <a href=${book.amazon_product_url}>Amazon Link</a><br>
+            <h4>Users who like this book also recommend:</h4>
+            <ul id="rec-list-${book.id}"></ul>
+            <a id="back-bttn" href="#">Back</a>
+            `
+            book.appendRecommendationsToDOM()
+
+            const backBttn = document.getElementById('back-bttn')
+            backBttn.addEventListener('click', Book.goBack)
+        }
+    }
+
+    static goBack(){
+        Book.booksContainer.innerHTML = ""
+        bookService.getBooks()
+    }
+
     bookRecommendations = () => {
         const bookRecs = Recommendation.filterRecommendations(this.id)
       
@@ -107,6 +138,7 @@ class Book{
         }
     }
 
+    
 
 
 }
