@@ -64,7 +64,15 @@ class Book{
     }
 
     static handleLikeClick(e){
-
+        if (e.target.className === "like-book" && e.target.innerText === BLACK_HEART){
+            e.target.innerText = RED_HEART
+            let currentLikes = parseInt(e.target.nextElementSibling.innerText)
+            e.target.nextElementSibling.innerText = `${++currentLikes} Likes`
+        } else if (e.target.className === "like-book" && e.target.innerText === RED_HEART){
+            e.target.innerText = BLACK_HEART
+            let currentLikes = parseInt(e.target.nextElementSibling.innerText)
+            e.target.nextElementSibling.innerText = `${--currentLikes} Likes`
+        }
     }
 
     static handleBookSubmit(e){
