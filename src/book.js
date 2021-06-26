@@ -18,6 +18,7 @@ class Book{
         this.element = document.createElement('div')
         this.element.dataset.id = this.id
         this.element.id = `book-${this.id}`
+        this.element.className = 'col'
 
         Book.all.push(this)
     }
@@ -41,10 +42,7 @@ class Book{
     }
 
     appendBookToDOM(){
-        Book.booksContainer.append(this.bookHTML())
-
-        // const newRecButton = document.getElementById('new-recommendation-button')
-        // newRecButton.addEventListener('click', Recommendation.handleRecClick)
+        Book.booksContainer.appendChild(this.bookHTML())
     }
 
     static handleBookClick(e){
@@ -78,18 +76,19 @@ class Book{
     static handleBookSubmit(e){
         e.preventDefault()
         bookService.createBook()
+        e.target.reset()
     }
 
     static handleShowPageClick(e){
         if (e.target.className === "book-img"){
             const book = Book.all.find(b => b.id === parseInt(e.target.dataset.id))
-            
+            debugger
             Book.booksContainer.innerHTML = ""
             Book.booksContainer.innerHTML = `
             <h2>${book.title}</h2>
             <h4>Author: ${book.author}</h4>
             <p>Description: ${book.description}</p>
-            <img src=${book.book_image} data-id="${book.id}" class="book-img">
+            <img src=${book.book_image} data-id="${book.id}" class="book-img-show">
             <br>
             <h2 data-id="${book.id}" class="like-book">${BLACK_HEART}</h2>
             <h3 id="likes-count-${book.id}">${book.likes} Likes</h3>
@@ -117,8 +116,7 @@ class Book{
     bookRecommendations = () => {
         const bookRecs = Recommendation.filterRecommendations(this.id)
       
-        let bookRecsArray = bookRecs.map((rec) => {
-            
+        let bookRecsArray = bookRecs.map((rec) => { 
             rec.element = document.createElement('li')
             rec.element.id = `recommendation-${rec.id}`
             
@@ -127,9 +125,8 @@ class Book{
             `        
             return rec.element
         })
-        
+
         return bookRecsArray
-        
     }
 
     appendRecommendationsToDOM = () => {
