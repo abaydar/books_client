@@ -33,7 +33,7 @@ class Book{
         <br>
         <h2 data-id="${this.id}" class="like-book">${BLACK_HEART}</h2>
         <h3 id="likes-count-${this.id}">${this.likes} Likes</h3>
-        <a class="btn btn-primary" href=${this.amazon_product_url}>Amazon Link</a><br>
+        <a class="btn btn-primary" href=${this.amazon_product_url}>Amazon Link</a><br><br>
         `
         
         return this.element
@@ -145,6 +145,17 @@ class Book{
         for(let i=0; i<this.bookRecommendations().length; i++){
             recList.appendChild(this.bookRecommendations()[i])
         }
+    }
+
+
+    static orderByMostLiked(){
+        const books = Book.all
+        let sortedBooks = books.sort((a,b) => (a.likes < b.likes) ? 1 : -1)
+        Book.booksContainer.innerHTML = ""
+        for(let i=0; i<sortedBooks.length; i++){
+            sortedBooks[i].appendBookToDOM()
+        }
+        //duplicating first 3 books?
     }
 
     // static searchBooks() {
