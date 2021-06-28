@@ -33,6 +33,7 @@ class RecommendationService {
         .then(recommendation => {
             const r = new Recommendation(recommendation)
             r.appendNewRecToDom(element)
+            document.getElementById('rec-form').remove()
         })
     }
 

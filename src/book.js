@@ -52,20 +52,20 @@ class Book{
     static handleBookFormClick(e){
         e.target.remove()
         Book.bookForm.innerHTML += ` 
-        <form id="new-book-form" class="row g-3">
+        <form id="new-book-form" class="row g-3 needs-validation">
             <div class="col">
                 <label for="title" class="form-label">Title</label>
-                <input type="text" class="form-control" id="title">
+                <input type="text" class="form-control" id="title" required>
                 <label for="author" class="form-label">Author</label>
-                <input type="text" class="form-control" id="author">
+                <input type="text" class="form-control" id="author" required>
             </div>
             <div class="col">
                 <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" id="description" rows="3"></textarea>
+                <textarea class="form-control" id="description" rows="3" required></textarea>
             </div>
             <div class="col">
                 <label for="book-image" class="form-label">Book Image</label>
-                <input type="text" class="form-control" id="book-image" placeholder="Paste image URL">
+                <input type="text" class="form-control" id="book-image" placeholder="Paste image URL" required>
                 <label for="amazon-product-url" class="form-label">Amazon URL</label>
                 <input type="text" class="form-control" id="amazon-product-url" placeholder="Paste Amazon URL">
                 <input type="submit" class="form-control btn btn-info" value="Add book">
