@@ -52,7 +52,7 @@ class Book{
     static handleBookFormClick(e){
         e.target.remove()
         Book.bookForm.innerHTML += ` 
-        <form id="new-book-form" class="row g-3 needs-validation">
+        <form id="new-book-form" class="row g-3">
             <div class="col">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" class="form-control" id="title" required>

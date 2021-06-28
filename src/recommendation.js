@@ -25,10 +25,16 @@ class Recommendation {
         e.target.remove()
 
         recList.innerHTML += `
-        <form id="rec-form">
-            Title: <input type="text" id="rec-title"><br>
-            Author: <input type="text" id="rec-author"><br>
-            <input type="submit" value="Add Recommendation">
+        <form id="rec-form" class="row g-3">
+            <div class="col">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="rec-title" required>
+            </div>
+            <div class="col">
+                <label for="author" class="form-label">Author</label>
+                <input type="text" class="form-control" id="rec-author" required>
+            </div>
+                <input type="submit" class="form-control btn btn-info" value="Add book">
         </form>
         `
 
