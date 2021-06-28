@@ -18,8 +18,7 @@ class Book{
         this.element = document.createElement('div')
         this.element.dataset.id = this.id
         this.element.id = `book-${this.id}`
-        this.element.className = 'col-md-4'
-        // this.element.className = 'p-3'
+        this.element.className = 'col-md-4 border border-info bg-light'
 
         Book.all.push(this)
     }
@@ -30,12 +29,11 @@ class Book{
         <h2>${this.title}</h2>
         <h4>Author: ${this.author}</h4>
         <p>Description: ${this.description}</p>
-        <img src=${this.book_image} data-id="${this.id}" class="book-img">
+        <img src=${this.book_image} data-id="${this.id}" class="book-img rounded">
         <br>
         <h2 data-id="${this.id}" class="like-book">${BLACK_HEART}</h2>
         <h3 id="likes-count-${this.id}">${this.likes} Likes</h3>
-        <a href=${this.amazon_product_url}>Amazon Link</a><br>
-        <ul id="rec-list-${this.id}"></ul>
+        <a class="btn btn-primary" href=${this.amazon_product_url}>Amazon Link</a><br>
         `
         
         return this.element
@@ -43,10 +41,7 @@ class Book{
     }
 
     appendBookToDOM(){
-        // const div = document.createElement('div')
-        // div.className = 'p-3 border bg-light'
         Book.booksContainer.appendChild(this.bookHTML())
-        // div.appendChild(this.bookHTML())
     }
 
     static handleBookFormClick(e){
@@ -95,11 +90,11 @@ class Book{
     }
 
     static handleShowPageClick(e){
-        if (e.target.className === "book-img"){
+        if (e.target.className === "book-img rounded"){
             const book = Book.all.find(b => b.id === parseInt(e.target.dataset.id))
             Book.booksContainer.innerHTML = ""
             Book.booksContainer.innerHTML = `
-            <div data-id="${book.id}" id="book-${book.id}">
+            <div data-id="${book.id}" id="book-${book.id}" class="col-md-6 border border-info bg-light">
                 <h2>${book.title}</h2>
                 <h4>Author: ${book.author}</h4>
                 <p>Description: ${book.description}</p>
@@ -107,10 +102,10 @@ class Book{
                 <br>
                 <h2 data-id="${book.id}" class="like-book">${BLACK_HEART}</h2>
                 <h3 id="likes-count-${book.id}">${book.likes} Likes</h3>
-                <a href=${book.amazon_product_url}>Amazon Link</a><br>
+                <a class="btn btn-primary" href=${book.amazon_product_url}>Amazon Link</a><br>
                 <h4>Users who like this book also recommend:</h4>
                 <ul id="rec-list-${book.id}"></ul>
-                <button id="new-recommendation-button">Add a Recommendation</button><br><br>
+                <button id="new-recommendation-button" class="btn btn-success" >Add a Recommendation</button><br><br>
                 <a id="back-bttn" href="#">Back</a>
             </div
             `
@@ -151,6 +146,23 @@ class Book{
             recList.appendChild(this.bookRecommendations()[i])
         }
     }
+
+    static searchBooks() {
+        let input = document.getElementById('searchbar').value.toLowerCase()
+        let x = Book.all;
+          
+        for (let i = 0; i < x.length; i++) { 
+            debugger
+            if (!x[i].title.toLowerCase().includes(input)) {
+                // x[i].style.display="none";
+            }
+            else {
+                // x[i].style.display="list-item";                 
+            }
+        }
+    }
+
+
 
     
 

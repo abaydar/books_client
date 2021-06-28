@@ -11,14 +11,11 @@ class Recommendation {
         Recommendation.all.push(this)
     }
 
-
     static filterRecommendations(bookId){
         return this.all.filter((r) => {
             return r.book_id === bookId
         })
-
     }
-
 
     static handleRecClick(e){
         const recList = e.target.previousElementSibling
@@ -53,5 +50,6 @@ class Recommendation {
         li.innerHTML = `${this.title} - ${this.author}`
         element.appendChild(li)
     }
+
 
 }
