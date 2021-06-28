@@ -1,2 +1,1 @@
-if liked on "main" page and then go to show page, dom is not updated
-add button to filter/search books
+add button to sort books by # of likes

@@ -19,6 +19,6 @@ Book.booksContainer.addEventListener('click', Book.handleLikeClick)
 
 Book.booksContainer.addEventListener('click', Book.handleShowPageClick)
 
-searchBar.addEventListener('keyup', Book.searchBooks)
+// searchBar.addEventListener('keyup', Book.searchBooks)
 
 

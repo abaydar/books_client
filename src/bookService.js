@@ -47,7 +47,12 @@ class BookService{
             },
             body: JSON.stringify({
                 "likes": ++currentLikes
-            })
+            })   
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            let book = Book.all.find(book => book.id === bookId)
+            book.likes = data.likes
         })
     }
 
