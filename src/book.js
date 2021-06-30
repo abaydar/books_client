@@ -149,7 +149,6 @@ class Book{
         }
     }
 
-
     static orderByMostLiked(){
         const books = Book.all
         let sortedBooks = books.sort((a,b) => (a.likes < b.likes) ? 1 : -1)
@@ -160,30 +159,5 @@ class Book{
             sortedBooks[i].appendBookToDOM()
         }
     }
-
-
-
-
-
-
-
-
-
-    // static searchBooks() {
-    //     let input = document.getElementById('searchbar').value.toLowerCase()
-    //     let x = document.querySelectorAll('.col-md-4');
-        
-    //     for (let i = 0; i < x.length; i++) { 
-    //         if (x[i].title.toLowerCase().includes(input)) {
-    //             Book.booksContainer.innerHTML = ""
-    //             Book.booksContainer.appendChild(x[i])      
-    //         }
-    //     }
-    // }
-
-
-
-    
-
 
 }

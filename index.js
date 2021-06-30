@@ -21,9 +21,3 @@ Book.booksContainer.addEventListener('click', Book.handleLikeClick)
 
 Book.booksContainer.addEventListener('click', Book.handleShowPageClick)
 
-
-
-// const searchBar = document.getElementById('searchbar')
-// searchBar.addEventListener('keyup', Book.searchBooks)
-
-
