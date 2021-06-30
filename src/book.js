@@ -4,7 +4,7 @@ class Book{
 
     static booksContainer = document.getElementById('books-container')
     static bookForm = document.getElementById('book-form')
-    
+    static orderBooks = document.querySelector("#top-likes")    
 
     constructor({id, title, author, description, book_image, amazon_product_url, likes}){
         this.id = id 
@@ -27,11 +27,11 @@ class Book{
         
         this.element.innerHTML += `
         <h2>${this.title}</h2>
-        <h4>Author: ${this.author}</h4>
-        <p>Description: ${this.description}</p>
+        <h4>${this.author}</h4>
+        <p>${this.description}</p>
         <img src=${this.book_image} data-id="${this.id}" class="book-img rounded">
         <br>
-        <h2 data-id="${this.id}" class="like-book">${BLACK_HEART}</h2>
+        <h3 data-id="${this.id}" class="like-book">${BLACK_HEART}</h3>
         <h3 id="likes-count-${this.id}">${this.likes} Likes</h3>
         <a class="btn btn-primary" href=${this.amazon_product_url}>Amazon Link</a><br><br>
         `
@@ -92,6 +92,7 @@ class Book{
     static handleShowPageClick(e){
         if (e.target.className === "book-img rounded"){
             const book = Book.all.find(b => b.id === parseInt(e.target.dataset.id))
+            Book.orderBooks.hidden = true
             Book.booksContainer.innerHTML = ""
             Book.booksContainer.innerHTML = `
             <div data-id="${book.id}" id="book-${book.id}" class="col-md-6 border border-info bg-light">
@@ -120,6 +121,7 @@ class Book{
     }
 
     static goBack(){
+        Book.orderBooks.hidden = false
         Book.booksContainer.innerHTML = ""
         bookService.getBooks()
     }
@@ -152,11 +154,20 @@ class Book{
         const books = Book.all
         let sortedBooks = books.sort((a,b) => (a.likes < b.likes) ? 1 : -1)
         Book.booksContainer.innerHTML = ""
+       
         for(let i=0; i<sortedBooks.length; i++){
+            sortedBooks[i].element.innerHTML = ""
             sortedBooks[i].appendBookToDOM()
         }
-        //duplicating first 3 books?
     }
+
+
+
+
+
+
+
+
 
     // static searchBooks() {
     //     let input = document.getElementById('searchbar').value.toLowerCase()

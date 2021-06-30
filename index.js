@@ -16,6 +16,7 @@ newFormButton.addEventListener('click', Book.handleBookFormClick)
 orderBooksButton.addEventListener('click', Book.orderByMostLiked)
 
 Book.bookForm.addEventListener('submit', Book.handleBookSubmit)
+
 Book.booksContainer.addEventListener('click', Book.handleLikeClick)
 
 Book.booksContainer.addEventListener('click', Book.handleShowPageClick)
