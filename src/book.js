@@ -107,7 +107,7 @@ class Book{
                 <h4>Users who like this book also recommend:</h4>
                 <ul id="rec-list-${book.id}"></ul>
                 <button id="new-recommendation-button" class="btn btn-success" >Add a Recommendation</button><br><br>
-                <a id="back-bttn" href="#">Back</a>
+                <a id="back-bttn" class="btn btn-info" href="#">Back</a>
             </div
             `
             book.appendRecommendationsToDOM()
@@ -123,7 +123,12 @@ class Book{
     static goBack(){
         Book.orderBooks.hidden = false
         Book.booksContainer.innerHTML = ""
-        bookService.getBooks()
+        let books = Book.all
+        for(let i=0; i<books.length; i++){
+            books[i].element.innerHTML = ""
+            books[i].appendBookToDOM()
+        }
+
     }
 
     bookRecommendations = () => {
