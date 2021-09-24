@@ -4,6 +4,7 @@ const bookService = new BookService(base_url)
 const recommendationService = new RecommendationService(base_url)
 const newFormButton = document.getElementById('new-form-button')
 const orderBooksButton = document.querySelector("#top-likes")
+// const searchBar = document.getElementById('searchbar')
 const BLACK_HEART = "🖤"
 const RED_HEART = "❤️"
 
@@ -20,4 +21,6 @@ Book.bookForm.addEventListener('submit', Book.handleBookSubmit)
 Book.booksContainer.addEventListener('click', Book.handleLikeClick)
 
 Book.booksContainer.addEventListener('click', Book.handleShowPageClick)
+
+searchBar.addEventListener('keyup', Book.searchBooks)
 

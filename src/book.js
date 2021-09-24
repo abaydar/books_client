@@ -45,6 +45,7 @@ class Book{
     }
 
     static handleBookFormClick(e){
+        Book.orderBooks.hidden = true
         e.target.remove()
         Book.bookForm.innerHTML += ` 
         <form id="new-book-form" class="row g-3">
@@ -164,5 +165,30 @@ class Book{
             sortedBooks[i].appendBookToDOM()
         }
     }
+
+    // static searchBooks() {
+    //     let input = document.getElementById('searchbar').value.toLowerCase()
+    //     let x = Book.all;
+
+    //     for (let i = 0; i < x.length; i++) { 
+    //         if (x[i] != null && !x[i].title.toUpperCase().includes(input)) {
+    //             document.querySelector(`#book-${i + 1}`).hidden = true
+    //         }
+    //         else {
+    //             // x[i].style.display="list-item";                 
+    //         }
+    //     }
+    // }
+    // static searchBooks() {
+    //     let input = document.getElementById('searchbar').value.toLowerCase()
+    //     let x = document.querySelectorAll('.col-md-4');
+
+    //     for (let i = 0; i < x.length; i++) { 
+    //         if (x[i].title.toLowerCase().includes(input)) {
+    //             Book.booksContainer.innerHTML = ""
+    //             Book.booksContainer.appendChild(x[i])      
+    //         }
+    //     }
+    // }
 
 }
