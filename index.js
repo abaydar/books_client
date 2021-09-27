@@ -1,5 +1,5 @@
 
-const base_url = "http://localhost:3000"
+const base_url = "https://salty-badlands-47605.herokuapp.com/"
 const bookService = new BookService(base_url)
 const recommendationService = new RecommendationService(base_url)
 const newFormButton = document.getElementById('new-form-button')
